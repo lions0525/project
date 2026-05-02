@@ -53,7 +53,7 @@ void fastheapSort(vector<Player>& v1,int N) {
 	for (int i = N;i >= 1;i--) {
 		Player curMin = v1.erase(1);
 	}
-}
+}ㄴ
 
 void promte() {//vacant를 이동
 
