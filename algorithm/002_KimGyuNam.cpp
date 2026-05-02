@@ -48,18 +48,30 @@ void constructHeap(vector<Player>&v1,int root,int N) {
 		fixheap(v1, root, K, N);
 	}
 }
+int getHeight(int N) {//힙의 높이 구하는 함수
+	int h = 0;
+	while (N > 1) {//계속 2로 나누어지면서 나누어지는 횟수가 힙의 높이가 된다
+		N /= 2;
+		h++;
+	}
+	return h;
+}
 
 void fastheapSort(vector<Player>& v1,int N) {
 	for (int i = N;i >= 1;i--) {
-		Player curMin = v1.erase(1);
+		Player curMin = v1[1];//루트 값(최솟값) 저장
+		v1[1] = v1[i];//맨 마지막 노드를 루트로 이동
+		v1[i] = curMin;//맨 마지막 노드에 최솟값 저장
+		int h = getHeight(i-1); //남은 노드의 높이 계산
+		fixheapFast(v1, 1, v1[1],h, N - 1);
 	}
-}ㄴ
+}
 
 void promte() {//vacant를 이동
 
 }
 
-void fixHeapFast(vector<Player>& v1,int vacant,Player K,int h,int N) {//heapsort용 fixheapfast
+void fixheapFast(vector<Player>& v1,int vacant,Player K,int h,int N) {//heapsort용 fixheapfast
 	if (h <= 1) {
 		
 	}
