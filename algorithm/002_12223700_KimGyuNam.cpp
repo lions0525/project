@@ -7,10 +7,6 @@ int TotalTime = 0;
 struct Player {//record와 id를 기록할 player구조 생성
 	int id;
 	int record;
-	Player(int i, int r) {
-		id = i;
-		record = r;
-	}
 };
 
 //player객체를 넣는 벡터 v1,빈공간의 위치 인덱스,옮겨야할 노드 K,N은 접근할 수 있는 유효한 마지막 인덱스를 의미,isSort는 정렬에서만 바꿀수 있도록 설정
