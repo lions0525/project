@@ -50,7 +50,7 @@ void fixheap(vector<Player>& v1, int vacant, Player K, int N, bool isSort) {//fi
 }
 
 
-//v1벡터 만들고, 루트를 표현하기위한 index,전체 노드개수 N
+//v1벡터 만들고, 루트를 표현하기위한 index,유효한 최대 인덱스 N
 void constructHeap(vector<Player>& v1, int root, int N) {
 	if (root * 2 <= N) {//자식이 있는지 확인,있을때만 실행
 		constructHeap(v1, root * 2, N);//왼쪽 자식을 루트로 하는 서브트리에서 실행
@@ -137,9 +137,8 @@ vector<int> fastheapSort(vector<Player>& v1, int N) {//heap에서 정렬을 시�
 	vector<int> rankTable;//리턴 해줄 등수표
 	rankTable.push_back({ -1 });//등수표 인덱스 0에 더미값 삽입
 	for (int i = N;i > 1;i--) {//노드의 개수만큼 계산해줘야한다,이때 노드의 개수가 1개인 경우 바로 넣으므로 2이상일때만
-		Player curMin = v1[1];//루트 값(최솟값) 저장
+		rankTable.push_back(v1[1].id);//등수표의 최솟값의 id삽입
 		v1[1] = v1[i];//맨 마지막 노드를 루트로 이동
-		rankTable.push_back(curMin.id);//등수표의 최솟값의 id삽입
 		int h = getHeight(i - 1); //남은 노드의 높이 계산
 		TotalTime += 1;//vacant의 깊이가 0으로 이동
 		fixHeapFast(v1, 1, v1[1], h, i - 1);
@@ -178,15 +177,15 @@ int main() {
 			cout << v1[k].id << " ";
 		}
 
-		cout << endl;
+		cout << '\n';
 		vector<int> rankTable = fastheapSort(v1, N);//힙 정렬
 
 		for (int k = 1;k < N + 1;k++) {//힙 정렬후 출력
 			cout << rankTable[k] << " ";
 		}
 
-		cout << endl;
-		cout << TotalTime << endl;
+		cout << '\n';
+		cout << TotalTime << '\n';
 
 		v1.clear();//한번의 반복이 끝난 후 벡터 초기화
 	}
